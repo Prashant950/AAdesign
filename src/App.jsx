@@ -13,7 +13,7 @@ import Contact from './pages/Contact';
 export default function App() {
   return (
     <ToastProvider>
-      <div className="flex min-h-screen flex-col">
+      <div className="flex min-h-screen flex-col overflow-x-hidden">
         <ScrollToTop />
         <Navbar />
         <main className="flex-1">

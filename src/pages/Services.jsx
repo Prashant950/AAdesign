@@ -4,6 +4,7 @@ import { ArrowRight, Layers } from 'lucide-react';
 import PageBanner from '../components/PageBanner';
 import SectionHeading from '../components/SectionHeading';
 import ServiceCard from '../components/ServiceCard';
+import CountUp from '../components/CountUp';
 import { services, serviceCategories, banners } from '../data/siteData';
 
 export default function Services() {
@@ -30,9 +31,9 @@ export default function Services() {
             text="Filter by discipline or click any service card to view full scope, deliverables, and execution timelines."
           />
 
-          {/* Interactive Category Filter */}
+          {/* Responsive Category Filter: symmetrical 2-col grid on mobile, sleek single row on web */}
           <div
-            className="mb-10 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3"
+            className="mx-auto mb-10 grid max-w-4xl grid-cols-2 gap-2.5 sm:flex sm:max-w-none sm:flex-wrap sm:items-center sm:justify-center sm:gap-3"
             role="tablist"
             aria-label="Filter services by category"
           >
@@ -42,6 +43,8 @@ export default function Services() {
                   ? services.length
                   : services.filter((s) => s.category === cat).length;
               const active = selectedCategory === cat;
+              const isAll = cat === 'All';
+
               return (
                 <button
                   key={cat}
@@ -49,20 +52,27 @@ export default function Services() {
                   role="tab"
                   aria-selected={active}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`inline-flex items-center gap-2 rounded-full border-2 px-4 py-2 text-xs font-bold transition-all duration-300 sm:px-5 sm:py-2.5 sm:text-sm ${
+                  className={`flex items-center justify-between gap-2 rounded-xl border-2 px-3.5 py-2.5 text-left text-xs font-bold transition-all duration-300 sm:w-auto sm:justify-center sm:rounded-full sm:px-5 sm:py-2.5 sm:text-sm ${
+                    isAll ? 'col-span-2 justify-center sm:col-span-1' : ''
+                  } ${
                     active
                       ? 'border-gold bg-choco text-gold shadow-lg shadow-choco/20'
                       : 'border-stone-200 bg-white text-choco hover:-translate-y-0.5 hover:border-gold hover:text-gold-dark'
                   }`}
                 >
-                  <Layers size={14} className={active ? 'text-gold' : 'text-stone-400'} />
-                  <span>{cat}</span>
+                  <span className="flex min-w-0 items-center gap-1.5 sm:gap-2">
+                    <Layers
+                      size={14}
+                      className={`shrink-0 ${active ? 'text-gold' : 'text-stone-400'}`}
+                    />
+                    <span className="truncate">{isAll ? 'All Services' : cat}</span>
+                  </span>
                   <span
-                    className={`rounded-full px-2 py-0.5 text-[11px] ${
+                    className={`shrink-0 rounded-full px-2 py-0.5 text-[11px] font-extrabold ${
                       active ? 'bg-gold text-choco-dark' : 'bg-stone-100 text-stone-600'
                     }`}
                   >
-                    {count}
+                    <CountUp value={String(count)} startOnMount duration={900} />
                   </span>
                 </button>
               );

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { CheckCircle2, ArrowRight, ShieldCheck, Award } from 'lucide-react';
+import { CheckCircle2, ArrowRight, ShieldCheck } from 'lucide-react';
 import SectionHeading from './SectionHeading';
+import CountUp from './CountUp';
 import { aboutImg, aboutImg2, stats } from '../data/siteData';
 
 const points = [
@@ -12,34 +13,38 @@ const points = [
 
 export default function WhoWeAre() {
   return (
-    <section className="section bg-white">
-      <div className="container-x grid items-center gap-12 lg:grid-cols-2">
-        <div className="relative pb-12 pr-4 sm:pr-12">
+    <section className="section overflow-hidden bg-white">
+      <div className="container-x grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
+        <div className="relative min-w-0 sm:pb-12 sm:pr-10">
           <div className="group overflow-hidden rounded-2xl border-2 border-stone-200 shadow-lg transition duration-500 hover:border-gold">
             <img
               src={aboutImg}
               alt="AA Design & Construction architects reviewing blueprints and material swatches"
               loading="lazy"
+              decoding="async"
               className="aspect-[4/3] w-full object-cover transition duration-700 group-hover:scale-105"
             />
           </div>
 
-          <div className="absolute bottom-0 right-0 w-[48%] overflow-hidden rounded-xl border-[6px] border-white shadow-2xl transition duration-500 hover:scale-[1.03] hover:border-gold/80">
+          <div className="mt-4 overflow-hidden rounded-xl border-2 border-gold/40 shadow-xl transition duration-500 hover:scale-[1.02] sm:absolute sm:bottom-0 sm:right-0 sm:mt-0 sm:w-[46%] sm:border-[6px] sm:border-white">
             <img
               src={aboutImg2}
               alt="Luxury Indian retail storefront delivered by AA Design & Construction"
               loading="lazy"
-              className="aspect-[4/3] w-full object-cover"
+              decoding="async"
+              className="aspect-[16/10] w-full object-cover sm:aspect-[4/3]"
             />
           </div>
 
-          <div className="absolute left-3 top-3 rounded-xl border border-gold/40 bg-choco px-4 py-3 text-center text-white shadow-xl sm:left-4 sm:top-4 sm:px-5 sm:py-3.5">
-            <p className="font-heading text-2xl font-extrabold text-gold sm:text-3xl">{stats[0].value}</p>
+          <div className="absolute left-3 top-3 rounded-xl border border-gold/40 bg-choco px-4 py-2.5 text-center text-white shadow-xl sm:left-4 sm:top-4 sm:px-5 sm:py-3.5">
+            <p className="font-heading text-2xl font-extrabold text-gold sm:text-3xl">
+              <CountUp value={stats[0].value} />
+            </p>
             <p className="text-[11px] font-medium tracking-wide text-stone-200">Years of Excellence</p>
           </div>
         </div>
 
-        <div>
+        <div className="min-w-0">
           <SectionHeading
             center={false}
             eyebrow="About AA Design & Construction"
@@ -67,7 +72,9 @@ export default function WhoWeAre() {
           <div className="mt-7 grid grid-cols-2 gap-4 rounded-xl border border-gold/25 bg-choco p-4 text-white sm:grid-cols-4">
             {stats.map((s) => (
               <div key={s.label} className="text-center">
-                <p className="font-heading text-xl font-extrabold text-gold sm:text-2xl">{s.value}</p>
+                <p className="font-heading text-xl font-extrabold text-gold sm:text-2xl">
+                  <CountUp value={s.value} />
+                </p>
                 <p className="mt-0.5 text-[11px] text-stone-300">{s.label}</p>
               </div>
             ))}

@@ -105,7 +105,18 @@ export default function Footer() {
       <div className="border-t border-gold/15 bg-choco-dark/70 py-5">
         <div className="container-x flex flex-col items-center justify-between gap-2 text-center text-xs text-stone-400 sm:flex-row">
           <p>&copy; {new Date().getFullYear()} {company.name}. All rights reserved.</p>
-          <p className="text-gold/80">Crafted with precision for Retail &amp; Commercial Spaces across India</p>
+          <p className="text-stone-400">
+            Powered By{' '}
+            <a
+              href="https://uniquedigitaltech.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Unique Digital Tech | Enterprise Software Engineering & Cloud Agency"
+              className="font-semibold text-gold transition hover:text-gold-light hover:underline"
+            >
+              Unique Digital Tech
+            </a>
+          </p>
         </div>
       </div>
     </footer>

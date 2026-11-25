@@ -15,6 +15,7 @@ import {
   Award,
 } from 'lucide-react';
 import PageBanner from '../components/PageBanner';
+import CountUp from '../components/CountUp';
 import { services, company } from '../data/siteData';
 
 export default function ServiceDetail() {
@@ -60,7 +61,7 @@ export default function ServiceDetail() {
             <MapPin size={22} className="shrink-0 text-gold" />
             <div>
               <p className="text-[11px] uppercase tracking-wider text-stone-300">Coverage</p>
-              <p className="font-heading text-sm font-bold text-white">28+ Cities Pan-India</p>
+              <p className="font-heading text-sm font-bold text-white"><CountUp value="28+" startOnMount /> Cities Pan-India</p>
             </div>
           </div>
           <div className="flex items-center gap-3 rounded-xl border border-gold/20 bg-choco-light/50 px-4 py-3">

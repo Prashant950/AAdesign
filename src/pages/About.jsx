@@ -14,6 +14,7 @@ import {
 import PageBanner from '../components/PageBanner';
 import SectionHeading from '../components/SectionHeading';
 import ClientMarquee from '../components/ClientMarquee';
+import CountUp from '../components/CountUp';
 import { banners, aboutImg, aboutImg2, stats, leadership } from '../data/siteData';
 
 const why = [
@@ -46,28 +47,30 @@ export default function About() {
       />
 
       {/* Our Story */}
-      <section className="section bg-white">
-        <div className="container-x grid items-center gap-12 lg:grid-cols-2">
-          <div className="relative pb-10 pr-4 sm:pr-10">
+      <section className="section overflow-hidden bg-white">
+        <div className="container-x grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
+          <div className="relative min-w-0 sm:pb-10 sm:pr-10">
             <div className="overflow-hidden rounded-2xl border-2 border-stone-200 shadow-xl transition hover:border-gold">
               <img
                 src={aboutImg}
                 alt="AA Design & Construction leadership and design studio"
                 loading="lazy"
+                decoding="async"
                 className="aspect-[4/3] w-full object-cover"
               />
             </div>
-            <div className="mt-4 overflow-hidden rounded-xl border-2 border-gold/40 shadow-lg sm:absolute sm:bottom-0 sm:right-0 sm:mt-0 sm:w-56">
+            <div className="mt-4 overflow-hidden rounded-xl border-2 border-gold/40 shadow-lg sm:absolute sm:bottom-0 sm:right-0 sm:mt-0 sm:w-56 sm:border-4 sm:border-white">
               <img
                 src={aboutImg2}
                 alt="Completed luxury retail showroom"
                 loading="lazy"
-                className="aspect-[4/3] w-full object-cover"
+                decoding="async"
+                className="aspect-[16/10] w-full object-cover sm:aspect-[4/3]"
               />
             </div>
           </div>
 
-          <div>
+          <div className="min-w-0">
             <SectionHeading center={false} eyebrow="Our Story" title="One Roof. Total Accountability." />
             <p className="-mt-5 text-base font-semibold text-choco sm:text-lg">
               Founded by Ramesh Sharma &amp; Amit Verma with a clear promise: never keep a client chasing multiple contractors.
@@ -120,10 +123,12 @@ export default function About() {
 
       {/* Stats Band */}
       <section className="bg-choco py-14">
-        <div className="container-x grid grid-cols-2 gap-8 text-center md:grid-cols-4">
+        <div className="container-x grid grid-cols-2 gap-4 text-center sm:gap-8 md:grid-cols-4">
           {stats.map((s) => (
             <div key={s.label} className="rounded-xl border border-gold/20 bg-choco-light/40 px-4 py-6 transition hover:border-gold">
-              <p className="font-heading text-4xl font-extrabold text-gold md:text-5xl">{s.value}</p>
+              <p className="font-heading text-3xl font-extrabold text-gold sm:text-4xl md:text-5xl">
+                <CountUp value={s.value} startOnMount />
+              </p>
               <p className="mt-2 text-xs font-medium uppercase tracking-wider text-stone-300 sm:text-sm">{s.label}</p>
             </div>
           ))}
